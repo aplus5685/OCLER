@@ -1,0 +1,29 @@
+{
+  "name": "occler-components",
+  "version": "1.0.0",
+  "description": "오클러 상권 정보 플랫폼 전용 UI 컴포넌트 라이브러리",
+  "main": "js/components.js",
+  "scripts": {
+    "serve": "python -m http.server 8080",
+    "serve-node": "npx http-server -p 8080 -c-1",
+    "build-package": "node scripts/build-package.js",
+    "zip-package": "powershell Compress-Archive -Path designer_package/* -DestinationPath occler-components.zip -Force"
+  },
+  "keywords": [
+    "ui-components",
+    "korean-business",
+    "responsive-design",
+    "accessibility"
+  ],
+  "author": "팀장킴 <team@occler.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "files": [
+    "index.html",
+    "styles/",
+    "js/",
+    "README_DESIGNER.md"
+  ]
+}

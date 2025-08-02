@@ -1,0 +1,694 @@
+/* ===== 오클러 업체카드 시스템 ===== */
+/* 오클러 상권 정보 플랫폼 전용 업체카드 컴포넌트 */
+
+/* ===== 기본 업체카드 ===== */
+.business-card {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  max-width: 500px;
+  min-height: 160px;
+  display: grid;
+  grid-template-columns: 120px 1fr 80px;
+  grid-template-areas: "photo info badges";
+  gap: var(--spacing-4);
+  align-items: start;
+}
+
+.business-card:hover {
+  box-shadow: var(--shadow-2xl);
+  transform: translateY(-2px);
+  border-color: var(--color-border-hover);
+}
+
+/* 업체 이미지 영역 */
+.business-card-image {
+  grid-area: photo;
+  width: 100%;
+  height: 120px;
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid var(--color-border);
+  position: relative;
+}
+
+/* 업체 이미지 위의 영업 상태 */
+.business-card-image .business-status {
+  position: absolute;
+  top: var(--spacing-2);
+  left: var(--spacing-2);
+  z-index: 5;
+  margin: 0;
+}
+
+.business-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.business-card-image-placeholder {
+  color: var(--color-text-tertiary);
+  font-size: 24px;
+  font-weight: var(--font-light);
+}
+
+/* 업체 정보 영역 */
+.business-card-content {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  min-height: 120px;
+}
+
+/* 업체 사진과 카테고리를 묶는 컨테이너 */
+.business-card-photo-section {
+  grid-area: photo;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.business-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.business-card-name {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+  line-height: var(--leading-tight);
+}
+
+.business-card-hotplace {
+  font-size: var(--text-sm);
+  color: var(--color-brand-primary);
+  font-weight: var(--font-medium);
+  margin: 0;
+}
+
+/* 카테고리를 사진 아래로 이동 */
+.business-card-category {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  background: var(--color-bg-tertiary);
+  padding: 2px var(--spacing-1);
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-medium);
+  white-space: nowrap;
+  text-align: center;
+  margin-top: var(--spacing-1);
+}
+
+/* 영업 정보 */
+.business-hours {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.business-hours-main {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  font-weight: var(--font-medium);
+}
+
+.business-hours-detail {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin-left: var(--spacing-4);
+}
+
+.business-hours-icon {
+  width: 12px;
+  height: 12px;
+  color: var(--color-text-tertiary);
+}
+
+.business-hours-text {
+  flex: 1;
+}
+
+.business-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.business-status.open {
+  background: var(--color-success-alpha);
+  color: var(--color-success);
+}
+
+.business-status.closed {
+  background: var(--color-error-alpha);
+  color: var(--color-error);
+}
+
+.business-status.break {
+  background: var(--color-warning-alpha);
+  color: var(--color-warning);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* 찜+리뷰+조회+별점 통계 */
+.business-stats {
+  display: flex;
+  gap: var(--spacing-2);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* 별점 추가 */
+.business-rating-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.rating-star-small {
+  width: 10px;
+  height: 10px;
+  color: var(--color-warning);
+  flex-shrink: 0;
+}
+
+.business-stat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.business-stat-icon {
+  width: 12px;
+  height: 12px;
+  color: var(--color-text-tertiary);
+}
+
+/* 기획관 (상자 모양 나열) */
+.business-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
+  margin-top: var(--spacing-1);
+}
+
+.business-feature-box {
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--spacing-1);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-medium);
+}
+
+/* 배찌 영역 */
+.business-card-badges {
+  grid-area: badges;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  align-items: flex-end;
+}
+
+.business-badges {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  align-items: flex-end;
+}
+
+/* 업체 태그 (기존 유지) */
+.business-tags {
+  display: flex;
+  gap: var(--spacing-1);
+  margin-top: var(--spacing-2);
+  flex-wrap: wrap;
+}
+
+.business-tag {
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-secondary);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  border: 1px solid var(--color-border);
+}
+
+/* 평점 시스템 */
+.business-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
+}
+
+.rating-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.rating-star {
+  width: 12px;
+  height: 12px;
+  color: var(--color-warning);
+}
+
+.rating-star.empty {
+  color: var(--color-text-tertiary);
+}
+
+.rating-score {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+}
+
+.rating-count {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* ===== 프리미엄 업체카드 ===== */
+.business-card-premium {
+  background: var(--color-bg-secondary);
+  border: 2px solid;
+  border-image: linear-gradient(135deg, 
+    #5e6ad2 0%, 
+    #7c3aed 25%, 
+    #ec4899 50%, 
+    #f59e0b 75%, 
+    #10b981 100%) 1;
+  border-radius: var(--radius-xl);
+  position: relative;
+  box-shadow: 
+    var(--shadow-2xl),
+    0 0 20px rgba(94, 106, 210, 0.1);
+}
+
+.business-card-premium::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, 
+    #5e6ad2 0%, 
+    #7c3aed 20%, 
+    #ec4899 40%, 
+    #f59e0b 60%, 
+    #10b981 80%, 
+    #06b6d4 100%);
+  border-radius: var(--radius-xl);
+  z-index: -1;
+  animation: premiumBorderGlow 3s ease-in-out infinite;
+}
+
+
+@keyframes premiumBorderGlow {
+  0%, 100% {
+    opacity: 0.8;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    filter: hue-rotate(30deg);
+  }
+}
+
+.business-card-premium:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    var(--shadow-2xl),
+    0 20px 40px rgba(94, 106, 210, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* 프리미엄 배지 제거됨 */
+
+/* 프리미엄 카드 이미지 */
+.business-card-premium .business-card-image {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* 프리미엄 카드 텍스트 향상 */
+.business-card-premium .business-card-name {
+  background: linear-gradient(135deg, 
+    var(--color-text-primary) 0%,
+    #5e6ad2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 특별한 효과들 */
+.business-card-premium .business-card-category {
+  background: linear-gradient(135deg, 
+    rgba(94, 106, 210, 0.1) 0%, 
+    rgba(124, 58, 237, 0.1) 100%);
+  border: 1px solid rgba(94, 106, 210, 0.2);
+  color: #5e6ad2;
+}
+
+/* 컴팩트 카드 제거됨 */
+
+/* 와이드 카드 제거됨 */
+
+/* 카드 액션 버튼들 */
+.business-card-actions {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-3);
+}
+
+.card-action-btn {
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.card-action-btn:hover {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-border-hover);
+  transform: translateY(-1px);
+}
+
+.card-action-btn.primary {
+  background: var(--gradient-brand);
+  border-color: var(--color-brand-primary);
+  color: var(--color-text-primary);
+}
+
+.card-action-btn.primary:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-action-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* 거리 표시 */
+.business-distance {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  margin-top: var(--spacing-1);
+}
+
+.distance-icon {
+  width: 12px;
+  height: 12px;
+}
+
+/* 즐겨찾기 버튼 */
+.favorite-btn {
+  position: absolute;
+  top: var(--spacing-2);
+  right: var(--spacing-2);
+  width: 28px;
+  height: 28px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  z-index: 5;
+}
+
+.favorite-btn:hover {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-border-hover);
+  transform: scale(1.1);
+}
+
+.favorite-btn.active {
+  background: var(--color-error-alpha);
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.favorite-icon {
+  width: 16px;
+  height: 16px;
+  transition: all var(--transition-fast);
+}
+
+.favorite-btn.active .favorite-icon {
+  transform: scale(1.2);
+}
+
+/* 프리미엄 카드의 즐겨찾기 버튼 조정 */
+.business-card-premium .favorite-btn {
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* 카드 그리드 레이아웃 */
+.business-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: var(--spacing-6);
+  padding: var(--spacing-6);
+}
+
+.business-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+}
+
+/* 로딩 스켈레톤 */
+.business-card-skeleton {
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  min-height: 180px;
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.skeleton-image {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(90deg, 
+    var(--color-bg-tertiary) 25%, 
+    var(--color-bg-elevated) 50%, 
+    var(--color-bg-tertiary) 75%);
+  background-size: 200% 100%;
+  animation: skeletonLoading 1.5s ease infinite;
+  border-radius: var(--radius-lg);
+}
+
+.skeleton-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.skeleton-line {
+  height: 1em;
+  background: linear-gradient(90deg, 
+    var(--color-bg-tertiary) 25%, 
+    var(--color-bg-elevated) 50%, 
+    var(--color-bg-tertiary) 75%);
+  background-size: 200% 100%;
+  animation: skeletonLoading 1.5s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-line.title {
+  width: 70%;
+  height: 1.5em;
+}
+
+.skeleton-line.subtitle {
+  width: 40%;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+
+.skeleton-line.medium {
+  width: 80%;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .business-cards-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
+  }
+  
+  .business-card {
+    max-width: none;
+    grid-template-columns: 80px 1fr;
+    grid-template-areas: 
+      "photo info"
+      "badges badges";
+    gap: var(--spacing-3);
+  }
+  
+  .business-card-image {
+    height: 80px;
+  }
+  
+  .business-card-badges {
+    grid-area: badges;
+    align-items: flex-start;
+  }
+  
+  .business-badges {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  
+  
+  .business-card-premium .premium-badge {
+    position: relative;
+    top: auto;
+    right: auto;
+    align-self: flex-start;
+    margin-bottom: var(--spacing-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .business-card {
+    padding: var(--spacing-4);
+    min-height: 160px;
+  }
+  
+  .business-card-image {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .business-card-name {
+    font-size: var(--text-lg);
+  }
+  
+  .business-card-actions {
+    flex-direction: column;
+  }
+  
+  .card-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 접근성 */
+@media (prefers-reduced-motion: reduce) {
+  .business-card,
+  .card-action-btn,
+  .favorite-btn {
+    transition: none;
+    transform: none !important;
+  }
+  
+  .business-card-premium::before {
+    animation: none;
+  }
+  
+  .skeleton-image,
+  .skeleton-line {
+    animation: none;
+  }
+}
+
+/* 고대비 모드 */
+@media (prefers-contrast: high) {
+  .business-card,
+  .business-card-premium {
+    border-width: 2px;
+  }
+  
+  .business-card-image {
+    border-width: 2px;
+  }
+  
+  .business-status,
+  .business-tag,
+  .card-action-btn {
+    border-width: 2px;
+  }
+}
+
+/* 다크모드 최적화 */
+@media (prefers-color-scheme: dark) {
+  .business-card-premium::after {
+    background: linear-gradient(135deg, 
+      rgba(94, 106, 210, 0.08) 0%, 
+      rgba(124, 58, 237, 0.06) 25%,
+      rgba(236, 72, 153, 0.06) 50%,
+      rgba(245, 158, 11, 0.06) 75%,
+      rgba(16, 185, 129, 0.08) 100%);
+  }
+  
+  .premium-badge {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: #451a03;
+  }
+}
