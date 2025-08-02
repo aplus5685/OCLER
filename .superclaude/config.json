@@ -1,0 +1,101 @@
+{
+  "project": {
+    "name": "오클러 (Occler)",
+    "description": "12,000개 오프라인 업체 정보 기반 상권 검색 서비스",
+    "version": "1.0.0",
+    "framework": "SuperClaude"
+  },
+  "personas": {
+    "project-manager": {
+      "name": "팀장킴",
+      "file": "personas/project-manager.md",
+      "priority": "high",
+      "tools": ["Task", "TodoWrite", "Read", "Grep", "Glob"]
+    },
+    "defensive-coder": {
+      "name": "박방어", 
+      "file": "personas/defensive-coder.md",
+      "priority": "high",
+      "tools": ["Read", "Edit", "MultiEdit", "Grep", "Bash"]
+    },
+    "debugger-expert": {
+      "name": "이디버",
+      "file": "personas/debugger-expert.md", 
+      "priority": "high",
+      "tools": ["Read", "Grep", "Bash", "Edit", "MultiEdit"]
+    },
+    "frontend-expert": {
+      "name": "최프론",
+      "file": "personas/frontend-expert.md",
+      "priority": "high", 
+      "tools": ["Read", "Edit", "MultiEdit", "Grep", "Bash", "WebFetch"]
+    },
+    "backend-api": {
+      "name": "정백엔",
+      "file": "personas/backend-api.md",
+      "priority": "high",
+      "tools": ["Read", "Edit", "MultiEdit", "Grep", "Bash", "Glob"]
+    },
+    "database-optimizer": {
+      "name": "강디비",
+      "file": "personas/database-optimizer.md", 
+      "priority": "high",
+      "tools": ["Read", "Edit", "Bash", "Grep", "MultiEdit"]
+    },
+    "test-engineer": {
+      "name": "오테스",
+      "file": "personas/test-engineer.md",
+      "priority": "medium",
+      "tools": ["Read", "Edit", "MultiEdit", "Bash", "Grep", "Glob"]
+    },
+    "design-expert": {
+      "name": "유디자",
+      "file": "personas/design-expert.md",
+      "priority": "medium", 
+      "tools": ["Read", "Grep", "Glob", "Edit", "MultiEdit", "WebSearch", "WebFetch"]
+    },
+    "ux-researcher": {
+      "name": "송고객",
+      "file": "personas/ux-researcher.md",
+      "priority": "medium",
+      "tools": ["Read", "Grep", "WebSearch", "Glob"]
+    },
+    "security-expert": {
+      "name": "한보안",
+      "file": "personas/security-expert.md", 
+      "priority": "high",
+      "tools": ["Read", "Grep", "Glob", "Edit", "MultiEdit", "WebSearch", "WebFetch"]
+    },
+    "idea-planner": {
+      "name": "나기획",
+      "file": "personas/idea-planner.md",
+      "priority": "medium",
+      "tools": ["WebSearch", "Read", "Grep", "TodoWrite", "WebFetch"]
+    }
+  },
+  "tools": {
+    "context7": {
+      "description": "문서 검색 및 분석 도구",
+      "enabled": true
+    },
+    "sequential": {
+      "description": "심층 분석 및 추론 도구", 
+      "enabled": true
+    },
+    "magic": {
+      "description": "UI 생성 도구",
+      "enabled": true
+    }
+  },
+  "rules": {
+    "evidence_based": true,
+    "security_first": true,
+    "performance_priority": true,
+    "user_experience_focus": true
+  },
+  "quality_standards": {
+    "code_coverage": 80,
+    "response_time_ms": 3000,
+    "availability": 99.9
+  }
+}

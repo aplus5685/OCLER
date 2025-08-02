@@ -1,0 +1,557 @@
+/**
+ * OCLER 최적화 컴포넌트 스타일
+ * 성능, 접근성, 한국어 지원에 최적화된 CSS
+ */
+
+/* ==========================================================================
+   CSS 커스텀 속성 (CSS Variables)
+   ========================================================================== */
+
+:root {
+  /* 한국 비즈니스 컬러 팔레트 */
+  --ocler-primary: #2E5BBA;
+  --ocler-primary-hover: #234A9B;
+  --ocler-primary-active: #1D3E7F;
+  
+  --ocler-secondary: #FFB81C;
+  --ocler-secondary-hover: #E6A619;
+  --ocler-secondary-active: #CC9416;
+  
+  --ocler-success: #28A745;
+  --ocler-warning: #FFC107;
+  --ocler-danger: #DC3545;
+  --ocler-info: #17A2B8;
+  
+  /* 한국 전통 색상 */
+  --ocler-korean-red: #C73E1D;
+  --ocler-korean-blue: #003087;
+  --ocler-korean-yellow: #FFD700;
+  
+  /* 그레이스케일 */
+  --ocler-white: #FFFFFF;
+  --ocler-gray-100: #F8F9FA;
+  --ocler-gray-200: #E9ECEF;
+  --ocler-gray-300: #DEE2E6;
+  --ocler-gray-400: #CED4DA;
+  --ocler-gray-500: #ADB5BD;
+  --ocler-gray-600: #6C757D;
+  --ocler-gray-700: #495057;
+  --ocler-gray-800: #343A40;
+  --ocler-gray-900: #212529;
+  
+  /* 타이포그래피 */
+  --ocler-font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', sans-serif;
+  --ocler-font-family-monospace: 'D2Coding', 'Consolas', monospace;
+  
+  --ocler-font-size-xs: 0.75rem;    /* 12px */
+  --ocler-font-size-sm: 0.875rem;   /* 14px */
+  --ocler-font-size-base: 1rem;     /* 16px */
+  --ocler-font-size-lg: 1.125rem;   /* 18px */
+  --ocler-font-size-xl: 1.25rem;    /* 20px */
+  --ocler-font-size-2xl: 1.5rem;    /* 24px */
+  
+  --ocler-font-weight-normal: 400;
+  --ocler-font-weight-medium: 500;
+  --ocler-font-weight-bold: 700;
+  
+  --ocler-line-height-tight: 1.25;
+  --ocler-line-height-normal: 1.5;
+  --ocler-line-height-relaxed: 1.75;
+  
+  /* 스페이싱 */
+  --ocler-spacing-1: 0.25rem;   /* 4px */
+  --ocler-spacing-2: 0.5rem;    /* 8px */
+  --ocler-spacing-3: 0.75rem;   /* 12px */
+  --ocler-spacing-4: 1rem;      /* 16px */
+  --ocler-spacing-5: 1.25rem;   /* 20px */
+  --ocler-spacing-6: 1.5rem;    /* 24px */
+  --ocler-spacing-8: 2rem;      /* 32px */
+  --ocler-spacing-10: 2.5rem;   /* 40px */
+  --ocler-spacing-12: 3rem;     /* 48px */
+  
+  /* 브레이크포인트 */
+  --ocler-breakpoint-sm: 576px;
+  --ocler-breakpoint-md: 768px;
+  --ocler-breakpoint-lg: 992px;
+  --ocler-breakpoint-xl: 1200px;
+  
+  /* 효과 */
+  --ocler-border-radius-sm: 0.25rem;
+  --ocler-border-radius: 0.375rem;
+  --ocler-border-radius-lg: 0.5rem;
+  --ocler-border-radius-xl: 0.75rem;
+  
+  --ocler-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --ocler-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --ocler-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --ocler-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  --ocler-transition-fast: 0.15s ease-in-out;
+  --ocler-transition-normal: 0.25s ease-in-out;
+  --ocler-transition-slow: 0.35s ease-in-out;
+  
+  /* Z-index 레이어 */
+  --ocler-z-dropdown: 1000;
+  --ocler-z-modal: 1050;
+  --ocler-z-popover: 1060;
+  --ocler-z-tooltip: 1070;
+  --ocler-z-toast: 1080;
+}
+
+/* ==========================================================================
+   기본 스타일 리셋 및 최적화
+   ========================================================================== */
+
+/* 한글 폰트 최적화 */
+* {
+  font-feature-settings: 'kern' 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 성능 최적화 */
+.ocler-responsive {
+  contain: layout style;
+}
+
+/* GPU 가속 활용 */
+.ocler-component {
+  transform: translateZ(0);
+  will-change: auto;
+}
+
+/* ==========================================================================
+   버튼 컴포넌트
+   ========================================================================== */
+
+.ocler-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ocler-spacing-2);
+  
+  font-family: var(--ocler-font-family);
+  font-weight: var(--ocler-font-weight-medium);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  
+  border: 1px solid transparent;
+  border-radius: var(--ocler-border-radius);
+  background-color: transparent;
+  
+  cursor: pointer;
+  user-select: none;
+  
+  transition: all var(--ocler-transition-fast);
+  
+  /* 접근성 */
+  outline-offset: 2px;
+}
+
+.ocler-btn:focus-visible {
+  outline: 2px solid var(--ocler-primary);
+  outline-offset: 2px;
+}
+
+.ocler-btn:disabled,
+.ocler-btn--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 버튼 크기 */
+.ocler-btn--xs {
+  padding: var(--ocler-spacing-1) var(--ocler-spacing-2);
+  font-size: var(--ocler-font-size-xs);
+  line-height: var(--ocler-line-height-tight);
+}
+
+.ocler-btn--sm {
+  padding: var(--ocler-spacing-2) var(--ocler-spacing-3);
+  font-size: var(--ocler-font-size-sm);
+  line-height: var(--ocler-line-height-tight);
+}
+
+.ocler-btn--md {
+  padding: var(--ocler-spacing-3) var(--ocler-spacing-4);
+  font-size: var(--ocler-font-size-base);
+  line-height: var(--ocler-line-height-normal);
+}
+
+.ocler-btn--lg {
+  padding: var(--ocler-spacing-4) var(--ocler-spacing-6);
+  font-size: var(--ocler-font-size-lg);
+  line-height: var(--ocler-line-height-normal);
+}
+
+.ocler-btn--xl {
+  padding: var(--ocler-spacing-5) var(--ocler-spacing-8);
+  font-size: var(--ocler-font-size-xl);
+  line-height: var(--ocler-line-height-normal);
+}
+
+/* 버튼 변형 */
+.ocler-btn--primary {
+  color: var(--ocler-white);
+  background-color: var(--ocler-primary);
+  border-color: var(--ocler-primary);
+  box-shadow: var(--ocler-shadow-sm);
+}
+
+.ocler-btn--primary:hover:not(:disabled) {
+  background-color: var(--ocler-primary-hover);
+  border-color: var(--ocler-primary-hover);
+  box-shadow: var(--ocler-shadow);
+  transform: translateY(-1px);
+}
+
+.ocler-btn--primary:active:not(:disabled) {
+  background-color: var(--ocler-primary-active);
+  border-color: var(--ocler-primary-active);
+  box-shadow: var(--ocler-shadow-sm);
+  transform: translateY(0);
+}
+
+.ocler-btn--secondary {
+  color: var(--ocler-primary);
+  background-color: var(--ocler-white);
+  border-color: var(--ocler-primary);
+}
+
+.ocler-btn--secondary:hover:not(:disabled) {
+  color: var(--ocler-white);
+  background-color: var(--ocler-primary);
+  transform: translateY(-1px);
+}
+
+.ocler-btn--outline {
+  color: var(--ocler-primary);
+  background-color: transparent;
+  border-color: var(--ocler-primary);
+}
+
+.ocler-btn--outline:hover:not(:disabled) {
+  color: var(--ocler-white);
+  background-color: var(--ocler-primary);
+}
+
+.ocler-btn--ghost {
+  color: var(--ocler-primary);
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.ocler-btn--ghost:hover:not(:disabled) {
+  background-color: var(--ocler-gray-100);
+}
+
+/* 한국 전통 색상 변형 */
+.ocler-btn--korean-red {
+  color: var(--ocler-white);
+  background-color: var(--ocler-korean-red);
+  border-color: var(--ocler-korean-red);
+}
+
+.ocler-btn--korean-blue {
+  color: var(--ocler-white);
+  background-color: var(--ocler-korean-blue);
+  border-color: var(--ocler-korean-blue);
+}
+
+/* 로딩 상태 */
+.ocler-btn--loading {
+  position: relative;
+  color: transparent !important;
+}
+
+.ocler-btn__spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ocler-spin 1s linear infinite;
+}
+
+@keyframes ocler-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* 아이콘 */
+.ocler-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875em;
+}
+
+.ocler-btn__text {
+  flex: 1;
+}
+
+/* ==========================================================================
+   입력 필드 컴포넌트
+   ========================================================================== */
+
+.ocler-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ocler-spacing-2);
+  width: 100%;
+}
+
+.ocler-input__label {
+  font-family: var(--ocler-font-family);
+  font-size: var(--ocler-font-size-sm);
+  font-weight: var(--ocler-font-weight-medium);
+  color: var(--ocler-gray-700);
+  margin-bottom: var(--ocler-spacing-1);
+}
+
+.ocler-input {
+  display: block;
+  width: 100%;
+  padding: var(--ocler-spacing-3) var(--ocler-spacing-4);
+  
+  font-family: var(--ocler-font-family);
+  font-size: var(--ocler-font-size-base);
+  line-height: var(--ocler-line-height-normal);
+  color: var(--ocler-gray-900);
+  
+  background-color: var(--ocler-white);
+  background-image: none;
+  
+  border: 1px solid var(--ocler-gray-300);
+  border-radius: var(--ocler-border-radius);
+  
+  transition: border-color var(--ocler-transition-fast), 
+              box-shadow var(--ocler-transition-fast);
+  
+  /* 한글 입력 최적화 */
+  ime-mode: auto;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.ocler-input:focus {
+  outline: none;
+  border-color: var(--ocler-primary);
+  box-shadow: 0 0 0 3px rgba(46, 91, 186, 0.1);
+}
+
+.ocler-input:disabled {
+  background-color: var(--ocler-gray-100);
+  color: var(--ocler-gray-500);
+  cursor: not-allowed;
+}
+
+.ocler-input:read-only {
+  background-color: var(--ocler-gray-50);
+}
+
+.ocler-input::placeholder {
+  color: var(--ocler-gray-500);
+  opacity: 1;
+}
+
+/* 한글 입력 중 스타일 */
+.ocler-input:lang(ko) {
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+/* 오류 상태 */
+.ocler-input-group--error .ocler-input {
+  border-color: var(--ocler-danger);
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.ocler-input-group--error .ocler-input:focus {
+  border-color: var(--ocler-danger);
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.2);
+}
+
+.ocler-input__error {
+  font-size: var(--ocler-font-size-sm);
+  color: var(--ocler-danger);
+  min-height: 1.25rem;
+  margin-top: var(--ocler-spacing-1);
+}
+
+/* ==========================================================================
+   반응형 디자인
+   ========================================================================== */
+
+/* 모바일 최적화 */
+@media (max-width: 767px) {
+  .ocler-responsive.mobile {
+    touch-action: manipulation;
+  }
+  
+  .ocler-btn {
+    min-height: 44px; /* iOS 접근성 가이드라인 */
+    min-width: 44px;
+  }
+  
+  .ocler-input {
+    font-size: 16px; /* iOS 확대 방지 */
+    min-height: 44px;
+  }
+  
+  /* 한글 키보드 대응 */
+  .ocler-input:lang(ko) {
+    padding-bottom: calc(var(--ocler-spacing-3) + env(keyboard-inset-height, 0px));
+  }
+}
+
+/* 태블릿 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ocler-btn--responsive {
+    padding: var(--ocler-spacing-4) var(--ocler-spacing-6);
+  }
+}
+
+/* 데스크톱 */
+@media (min-width: 1024px) {
+  .ocler-btn:hover {
+    transform: translateY(-1px);
+  }
+  
+  .ocler-input:hover:not(:disabled):not(:focus) {
+    border-color: var(--ocler-gray-400);
+  }
+}
+
+/* ==========================================================================
+   접근성 개선
+   ========================================================================== */
+
+/* 고대비 모드 */
+@media (prefers-contrast: high) {
+  .ocler-btn--primary {
+    border-width: 2px;
+  }
+  
+  .ocler-input {
+    border-width: 2px;
+  }
+}
+
+/* 애니메이션 감소 설정 */
+@media (prefers-reduced-motion: reduce) {
+  .ocler-btn,
+  .ocler-input {
+    transition: none;
+  }
+  
+  .ocler-btn__spinner {
+    animation: none;
+  }
+}
+
+/* 포커스 표시 강화 */
+@supports selector(:focus-visible) {
+  .ocler-btn:focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  .ocler-input:focus:not(:focus-visible) {
+    box-shadow: none;
+    border-color: var(--ocler-gray-300);
+  }
+}
+
+/* ==========================================================================
+   성능 최적화
+   ========================================================================== */
+
+/* GPU 레이어 생성 최적화 */
+.ocler-btn:hover,
+.ocler-btn:focus,
+.ocler-btn:active {
+  will-change: transform, box-shadow;
+}
+
+.ocler-btn:not(:hover):not(:focus):not(:active) {
+  will-change: auto;
+}
+
+/* 레이아웃 최적화 */
+.ocler-input-group {
+  contain: layout;
+}
+
+.ocler-btn {
+  contain: layout style;
+}
+
+/* ==========================================================================
+   다크 모드 지원
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ocler-white: #1a1a1a;
+    --ocler-gray-100: #2d2d2d;
+    --ocler-gray-200: #404040;
+    --ocler-gray-300: #525252;
+    --ocler-gray-400: #737373;
+    --ocler-gray-500: #a3a3a3;
+    --ocler-gray-600: #d4d4d4;
+    --ocler-gray-700: #e5e5e5;
+    --ocler-gray-800: #f5f5f5;
+    --ocler-gray-900: #ffffff;
+  }
+  
+  .ocler-input {
+    color: var(--ocler-gray-900);
+    background-color: var(--ocler-gray-100);
+    border-color: var(--ocler-gray-400);
+  }
+  
+  .ocler-btn--secondary {
+    background-color: var(--ocler-gray-100);
+    color: var(--ocler-primary);
+  }
+}
+
+/* ==========================================================================
+   유틸리티 클래스
+   ========================================================================== */
+
+/* 숨김 */
+.ocler-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 로딩 */
+.ocler-loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* 드래그 방지 */
+.ocler-no-drag {
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+}

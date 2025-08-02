@@ -1,29 +1,60 @@
 {
-  "name": "occler-components",
+  "name": "ocler-components",
   "version": "1.0.0",
   "description": "오클러 상권 정보 플랫폼 전용 UI 컴포넌트 라이브러리",
-  "main": "js/components.js",
+  "main": "src/components/components.js",
   "scripts": {
-    "serve": "python -m http.server 8080",
-    "serve-node": "npx http-server -p 8080 -c-1",
-    "build-package": "node scripts/build-package.js",
-    "zip-package": "powershell Compress-Archive -Path designer_package/* -DestinationPath occler-components.zip -Force"
+    "dev": "npx http-server public -p 3000 -c-1 --cors",
+    "serve": "npm run dev",
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "node tools/build/css-processor.js",
+    "build:js": "node tools/build/js-bundler.js",
+    "test": "npm run test:components",
+    "test:components": "node tests/component-tests.js",
+    "lint": "echo 'Linting JavaScript files...'",
+    "format": "echo 'Formatting code...'",
+    "claude-flow": "npx claude-flow@alpha",
+    "cf": "npx claude-flow@alpha swarm",
+    "deploy": "npm run build && node tools/deploy/deploy.js",
+    "serve-legacy": "python -m http.server 8080",
+    "zip-package": "powershell Compress-Archive -Path designer_package/* -DestinationPath ocler-components.zip -Force",
+    "ai:help": "node tools/ai-helpers.js help",
+    "ai:start": "node tools/ai-helpers.js start",
+    "ai:review": "node tools/ai-helpers.js review",
+    "ai:component": "node tools/ai-helpers.js component",
+    "ai:optimize": "node tools/ai-helpers.js optimize",
+    "ai:test": "node tools/ai-helpers.js test",
+    "ai:responsive": "node tools/ai-helpers.js responsive",
+    "ai:design": "node tools/ai-helpers.js design",
+    "ai:docs": "node tools/ai-helpers.js docs",
+    "ai:build": "node tools/ai-helpers.js build",
+    "ai:bug": "node tools/ai-helpers.js bug",
+    "ai:analyze": "node tools/ai-helpers.js analyze"
   },
   "keywords": [
     "ui-components",
     "korean-business",
     "responsive-design",
-    "accessibility"
+    "accessibility",
+    "claude-code",
+    "ai-development"
   ],
-  "author": "팀장킴 <team@occler.com>",
+  "author": "팀장킴 <team@ocler.com>",
   "license": "MIT",
   "devDependencies": {
     "http-server": "^14.1.1"
   },
   "files": [
-    "index.html",
-    "styles/",
-    "js/",
-    "README_DESIGNER.md"
-  ]
+    "public/",
+    "src/",
+    "docs/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aplus5685/OCLER.git"
+  }
 }

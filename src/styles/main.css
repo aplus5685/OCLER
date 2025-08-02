@@ -1,0 +1,54 @@
+/* 오클러 프로젝트 - 통합 스타일시트 */
+/* 모든 컴포넌트와 테마를 하나로 통합 */
+
+/* 1. 기본 테마 및 색상 시스템 */
+@import url('./linear-theme.css');
+
+/* 2. 핵심 컴포넌트 */
+@import url('./components.css');
+@import url('./linear-components.css');
+
+/* 3. 특화 컴포넌트 */
+@import url('./business-cards.css');
+@import url('./business-badges.css');
+@import url('./mobile-components.css');
+@import url('./interactive-components.css');
+
+/* 4. 고급 UI 컴포넌트 */
+@import url('./advanced-ui-components.css');
+
+/* 5. 유틸리티 */
+@import url('./toast.css');
+
+/* 통합 전역 스타일 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    line-height: 1.5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* 반응형 컨테이너 */
+.container {
+    max-width: 414px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-4);
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+    }
+}
